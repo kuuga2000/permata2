@@ -1,0 +1,8 @@
+[21-Feb-2013 10:11:41] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/demopi/public_html/permata/application/admin/controllers/newsletter.php on line 45
+[21-Feb-2013 13:30:31] PHP Parse error:  syntax error, unexpected $end in /home/demopi/public_html/permata/application/admin/views/product_cat.php on line 96
+[22-Feb-2013 16:37:33] PHP Parse error:  syntax error, unexpected ')' in /home/demopi/public_html/permata/application/admin/controllers/newsletter.php on line 35
+[22-Feb-2013 16:42:07] PHP Fatal error:  Call to a member function userdata() on a non-object in /home/demopi/public_html/permata/application/admin/controllers/newsletter.php on line 33
+[26-Feb-2013 17:57:26] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in /home/demopi/public_html/permata/system/database/DB_active_rec.php on line 279
+[26-Feb-2013 18:05:01] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in /home/demopi/public_html/permata/system/database/DB_driver.php on line 372
+[26-Feb-2013 18:08:57] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in /home/demopi/public_html/permata/system/database/DB_driver.php on line 337
+[26-Feb-2013 18:09:15] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in /home/demopi/public_html/permata/system/core/CodeIgniter.php on line 233
