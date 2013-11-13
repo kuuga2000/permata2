@@ -374,9 +374,12 @@
 						<div class='float col-40'><?php echo $position; ?>&nbsp</div>
 						<div class='float col-160'><?php echo $ptr->name; ?></div>
 						<!--<div class='float col-220'><?php //echo $ptr->deskripsi; ?>&nbsp </div>-->
-						<div class='float col-80'><?php echo number_format($ptr->base_price, 0, ',', '.'); ?>&nbsp</div>
+						<div class='float col-80'>
+							<?php //echo number_format($ptr->base_price, 0, ',', '.'); ?>&nbsp
+							<?=number_format($ptr->base_price - ($ptr->base_price*$ptr->disc/100),0,'','.');?>
+						</div>
 						<div class='float col-40'><?php echo $ptr->qty;  ?>&nbsp</div>
-						<div class='float col-80'><?php echo $numbertotal; ?></div>
+						<div class='float col-80'><?=number_format(($ptr->base_price - ($ptr->base_price*$ptr->disc/100))*$ptr->qty,0,'','.')//$numbertotal; ?></div>
 						<div class="clear"></div>
 					</div>
 					<?php
