@@ -272,3 +272,5 @@ ERROR - 2013-11-13 11:43:11 --> Severity: Notice  --> Trying to get property of 
 ERROR - 2013-11-13 11:50:39 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`.*, `zpxf_`zpxf_product_price`.`base_price`, `zpxf_`zpxf_product_price`.`disc`,' at line 1
 ERROR - 2013-11-13 13:25:39 --> Severity: Notice  --> Undefined variable: val_thumb E:\xampp\htdocs\permata2\!permata\application\site\views\products.php 164
 ERROR - 2013-11-13 13:25:39 --> Severity: Notice  --> Trying to get property of non-object E:\xampp\htdocs\permata2\!permata\application\site\views\products.php 164
+ERROR - 2013-11-13 14:56:23 --> Severity: Notice  --> Undefined variable: val_thumb E:\xampp\htdocs\permata2\!permata\application\site\views\products.php 164
+ERROR - 2013-11-13 14:56:23 --> Severity: Notice  --> Trying to get property of non-object E:\xampp\htdocs\permata2\!permata\application\site\views\products.php 164
