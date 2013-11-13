@@ -48,9 +48,10 @@ class Home extends CI_Controller {
 	}
 	
 	public function send_contact() {
+		
 		if(! $_POST) {
 			$this->session->set_flashdata('contact', "Please fill all field");
-			redirect('contact-us');
+			redirect('contact');
 		}
 		
 		$name = $this->input->post('name');
@@ -62,7 +63,7 @@ class Home extends CI_Controller {
 		
 		if(!$name OR !$email OR !$address OR !$mobilephone OR !$subject OR !$message) {
 			$this->session->set_flashdata('contact', "Please fill all field");
-			redirect('contact-us');
+			redirect('contact');
 		}
 		
 		/* if(! $this->email_valid($email) ) {
@@ -80,7 +81,7 @@ class Home extends CI_Controller {
 		);
 		$data = (object) $data;
 		if ( ! $tpl = $this->pix_mail_tpl->contact($data))
-			redirect('contact-us');
+			redirect('contact');
 
 		$this->load->library('email');
 		
@@ -93,6 +94,6 @@ class Home extends CI_Controller {
 		else
 			$this->session->set_flashdata('contact', 'Failed to send your message. Please try later.');
 		
-		redirect('contact-us');
+		redirect('contact');
 	}
 }

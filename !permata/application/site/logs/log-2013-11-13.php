@@ -342,3 +342,5 @@ ERROR - 2013-11-13 16:25:50 --> Severity: Notice  --> Undefined variable: val_th
 ERROR - 2013-11-13 16:25:50 --> Severity: Notice  --> Trying to get property of non-object E:\xampp\htdocs\permata2\!permata\application\site\views\products.php 164
 ERROR - 2013-11-13 16:25:54 --> Severity: Notice  --> Undefined variable: val_thumb E:\xampp\htdocs\permata2\!permata\application\site\views\products.php 164
 ERROR - 2013-11-13 16:25:54 --> Severity: Notice  --> Trying to get property of non-object E:\xampp\htdocs\permata2\!permata\application\site\views\products.php 164
+ERROR - 2013-11-13 16:50:18 --> Severity: Notice  --> Undefined variable: val_thumb E:\xampp\htdocs\permata2\!permata\application\site\views\products.php 164
+ERROR - 2013-11-13 16:50:18 --> Severity: Notice  --> Trying to get property of non-object E:\xampp\htdocs\permata2\!permata\application\site\views\products.php 164
