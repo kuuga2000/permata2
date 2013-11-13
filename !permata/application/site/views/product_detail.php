@@ -58,7 +58,7 @@
 					$disc = $product->base_price - ($product->base_price * $product->disc/100);
 					echo $product->disc.' '.$percent;
 				}else{
-					echo $product->disc.' '.$percent;
+					echo $product->disc.' '.$percent;//
 				}
 				?></div>
 			</div>
