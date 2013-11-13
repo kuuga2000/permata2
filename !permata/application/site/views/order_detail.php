@@ -55,10 +55,10 @@
 				<div class="cb"></div>
 			</td>
 			<td>
-				Quantity : <?php echo $val->qty;?>
+				Quantity : <?php echo $this->currency->idr($val->qty);?>
 			</td>
 			<td>
-				Total : IDR <?php echo $nettprice;?>
+				Total : IDR <?php echo $this->currency->idr($nettprice);?>
 			</td>
 		</tr>
 		<?php } 
@@ -66,11 +66,11 @@
 		?>
 		<tr>
 			<td colspan="3" align="right" style="font-size:16px;">
-				Sub Total : IDR <?php echo $totalprice;?><br />
+				Sub Total : IDR <?php echo $this->currency->idr($totalprice);?><br />
 				<?php if($order->voucher_code != '') { $vcr_value = $this->voucher_model->getDetail($order->voucher_code)->vcr_value; $grand -= $vcr_value; ?>Voucher Discount : IDR <?php echo $vcr_value;?><br /> <?php }?>
 				<?php if($order->credit_balance_used != '0') { $grand -= $order->credit_balance_used; ?>Credit Balance Used : IDR <?php echo $order->credit_balance_used;?><br /> <?php }?>
 				<!-- Shipping Cost : IDR <?php echo $order->shipping_cost?><br /><br />-->
-				Total Due Ammount : IDR <?php echo $order->total_orders?><br /><br />
+				Total Due Ammount : IDR <?php echo $this->currency->idr($order->total_orders);?><br /><br />
 			</td>
 		</tr>
 	</table>

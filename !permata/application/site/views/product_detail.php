@@ -44,7 +44,7 @@
 				<div class="title">DISCOUNT</div>
 				<div class="percentage"><?php 
 				
-				if($product->disc==0 && $product->diskonManufaktur!==0){
+				if($product->disc==0 && $product->diskonManufaktur!=0){
 					$disc = $product->base_price - ($product->base_price * $product->diskonManufaktur/100);
 					echo $product->diskonManufaktur.' '.$percent;
 				}
@@ -57,7 +57,8 @@
 				if($product->disc!=0 && $product->diskonManufaktur==0){
 					$disc = $product->base_price - ($product->base_price * $product->disc/100);
 					echo $product->disc.' '.$percent;
-				}else{
+				}
+				if($product->disc==0 && $product->diskonManufaktur==0){
 					echo $product->disc.' '.$percent;//
 				}
 				?></div>

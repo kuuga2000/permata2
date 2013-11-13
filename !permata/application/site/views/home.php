@@ -170,16 +170,16 @@ foreach($this->product_model->pic($val_item->id_product, 4) AS $val_thumb) {
 							<div class="percentage">
 								<?php
 								if ($val_item -> disc != 0 && $val_item -> diskonManufaktur != 0) {
-									$price = $val_item->base_price-($val_item->base_price*$val_item -> disc/100); 	
+									$price = $val_item -> base_price - ($val_item -> base_price * $val_item -> disc / 100);
 									echo $val_item -> disc . ' ' . $percent;
 								} elseif ($val_item -> disc != 0 && $val_item -> diskonManufaktur == 0) {
-									$price = $val_item->base_price-($val_item->base_price*$val_item -> disc/100);
+									$price = $val_item -> base_price - ($val_item -> base_price * $val_item -> disc / 100);
 									echo $val_item -> disc . ' ' . $percent;
 								} elseif ($val_item -> disc == 0 && $val_item -> diskonManufaktur != 0) {
-									$price = $val_item->base_price-($val_item->base_price*$val_item -> diskonManufaktur/100);
+									$price = $val_item -> base_price - ($val_item -> base_price * $val_item -> diskonManufaktur / 100);
 									echo $val_item -> diskonManufaktur . ' ' . $percent;
-								}else{
-									$price = $val_item->base_price;
+								} else {
+									$price = $val_item -> base_price;
 									echo $val_item -> disc . ' ' . $percent;
 								}
 								//echo $val_item -> disc . ' ' . $percent;
@@ -191,8 +191,25 @@ foreach($this->product_model->pic($val_item->id_product, 4) AS $val_thumb) {
 								PRICE
 							</div>
 							<span class="currency">IDR</span>
-							<span class="price1" style="font-size: 23px;" ><?php echo substr($price, 0, strlen($price) - 3);?></span>
-							<span class="price2">.<?php echo substr($price, -3);?></span>
+							<span class="price1" style="font-size: 23px;" > 
+								<?php
+								$countCaracterPrice=strlen(substr(number_format($price, 0, '', '.'), 0, strlen($price) - 2));
+								if($countCaracterPrice==4){
+								?>
+
+								<?php echo implode('', explode('.', substr(number_format($price, 0, '', '.'), 0, strlen($price) - 2)));?>
+
+								<? }elseif($countCaracterPrice==5){?>
+								<?php echo implode('.', explode('.', substr(number_format($price, 0, '', '.'), 0, strlen($price) - 2)));?>
+								<? }elseif($countCaracterPrice==3){?>
+								<?php echo implode('', explode('.', substr(number_format($price, 0, '', '.'), 0, strlen($price) - 2)));?>
+								<? }?>
+
+								<?php //echo substr($price, 0, strlen($price) - 3);?></span>
+							<span class="price2">
+								<?php echo implode('.', explode('.', substr(number_format($price, 0, '', '.'), -4)));?>
+								<?php //echo substr($price, -3);?>
+							</span>
 							<div class="cb"></div>
 						</div>
 					</div>

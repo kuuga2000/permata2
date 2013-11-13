@@ -68,6 +68,7 @@ class Transactions extends MY_Controller {
 		$this->load->view('transactions_.php', $data);
 	}
 	function information(){
+		//echo "sdfdf";exit;
 		$data['dattr'] = '';
 		$this->load->model('attribute_m');
 		$data['title'] = 'Order List';

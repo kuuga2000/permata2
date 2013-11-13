@@ -85,6 +85,7 @@ class Transaction_m extends CI_Model {
 		$this->db->join('product','order_item.id_product = product.id_product','left');
 		$this->db->join('product_stock','order_item.id_prod_stock = product_stock.id_prod_stock','left');
 		$this->db->where("order_item.invoice_number",$id);
+		//echo $this->db->_compile_select();exit;
 		$hasil = $this->db->get();
 		if($hasil->num_rows() >0)
 		{	

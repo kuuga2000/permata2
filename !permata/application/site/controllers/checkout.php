@@ -140,6 +140,17 @@ class Checkout extends CI_Controller {
 			
 			$data_item = array();
 			foreach($product AS $item) {
+				//echo '<br>diskon product :'.$item->disc;
+				//echo '<br>diskon brand: '.$item->diskonManufaktur;
+				if($item->disc!=0 && $item->diskonManufaktur!=0){
+					$disc = $item->disc;
+				}elseif($item->disc!=0 && $item->diskonManufaktur==0){
+					$disc = $item->disc;
+				}elseif($item->disc==0 && $item->diskonManufaktur!=0){
+					$disc=$item->diskonManufaktur;
+				}elseif($item->disc==0 && $item->diskonManufaktur==0){
+					$disc = 0;
+				}
 				array_push($data_item, 
 					array(
 						"invoice_number" => $new_id,
@@ -147,12 +158,14 @@ class Checkout extends CI_Controller {
 						"id_prod_stock" => "",
 						"base_price" => $item->base_price,
 						"tax" => $item->tax,
-						"disc" => $item->disc,
+						"disc" => $disc,//$item->disc,
 						"disc_type" => $item->disc_type,
 						"qty" => $shop_cart[$item->id_product]
 					)
 				);
 			}
+			//print_r($data_item);
+			//exit;
 		}
 		
 		if($this->product_model->check_stock($shop_cart)) {
@@ -302,6 +315,7 @@ class Checkout extends CI_Controller {
 		}
 		
 		if ( $action == 'payment') {
+			//print_r($_POST);exit;
 			if ( ! $this->session->userdata('sess_account'))
 				redirect('checkout/account');
 			

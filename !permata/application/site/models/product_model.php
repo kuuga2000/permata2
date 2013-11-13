@@ -238,6 +238,7 @@ class Product_model extends CI_Model {
 		$this->db->where_in($this->dbtable.'.id_product', $list);
 		$this->db->group_by($this->dbtable.".id_product");
 		//echo $this->db->_compile_select();exit; 
+		
 		$q = $this->db->get();
 
 		if($q->num_rows() > 0)
