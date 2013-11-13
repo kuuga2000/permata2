@@ -42,7 +42,25 @@
 		<div class="price">
 			<div class="fleft discount-percent">
 				<div class="title">DISCOUNT</div>
-				<div class="percentage"><?php echo $product->disc.' '.$percent;?></div>
+				<div class="percentage"><?php 
+				
+				if($product->disc==0 && $product->diskonManufaktur!==0){
+					$disc = $product->base_price - ($product->base_price * $product->diskonManufaktur/100);
+					echo $product->diskonManufaktur.' '.$percent;
+				}
+				
+				if($product->disc!=0 && $product->diskonManufaktur!=0){
+					$disc = $product->base_price - ($product->base_price * $product->disc/100);	
+					echo $product->disc.' '.$percent;
+				}
+				
+				if($product->disc!=0 && $product->diskonManufaktur==0){
+					$disc = $product->base_price - ($product->base_price * $product->disc/100);
+					echo $product->disc.' '.$percent;
+				}else{
+					echo $product->disc.' '.$percent;
+				}
+				?></div>
 			</div>
 			<div class="fleft nett-price">
 				<div class="title">PRICE</div>

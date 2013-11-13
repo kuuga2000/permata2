@@ -85,7 +85,20 @@ class Checkout extends CI_Controller {
 			$product 		= $this->product_model->getDetailByList(array_keys($shop_cart));
 			
 			foreach($product AS $item) {
-				$total += $item->base_price * (100 - $item->disc)/100 * $shop_cart[$item->id_product];
+				
+				//$total += $item->base_price * (100 - $item->disc)/100 * $shop_cart[$item->id_product];
+				//added by kuuga november 13,2013
+				if($item->disc==0 && $item->diskonManufaktur!==0){
+					$disc = ($item->base_price - ($item->base_price * $item->diskonManufaktur/100))*$shop_cart[$item->id_product];
+				}
+				if($item->disc!=0 && $item->diskonManufaktur!=0){
+					$disc = ($item->base_price - ($item->base_price * $item->disc/100))*$shop_cart[$item->id_product]; 
+				}
+				if($item->disc!=0 && $item->diskonManufaktur==0){
+					$disc = ($disc = $item->base_price - ($item->base_price * $item->disc/100))*$shop_cart[$item->id_product];
+				}
+				$total +=$disc;
+				//end 
 			}
 		}
 		
@@ -363,7 +376,7 @@ class Checkout extends CI_Controller {
 				
 				// prepare other data for show
 				$data['orderid'] 	= $new_id;
-				$data['total'] 		= $total;
+				$data['total'] 		= $this->currency->idr($total);
 				$data['addr'] 		= $address;
 				
 				$this->load->model('bank_model');

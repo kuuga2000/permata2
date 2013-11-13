@@ -145,7 +145,9 @@ class Product_model extends CI_Model {
 		}else if ($limit) {
 			$this->db->limit($limit, 0);
 		}
+		
 		//echo $this->db->_compile_select();exit;
+		
 		$q = $this->db->get();
 
 		if($q->num_rows() > 0)
@@ -182,6 +184,7 @@ class Product_model extends CI_Model {
 		else if($sort == 'price')
 			$this->db->order_by($this->dbtable_price.'.base_price * (100 - '.$this->db->dbprefix($this->dbtable_price).'.disc)/100');
 		$this->db->group_by($this->dbtable.".id_product");
+		//echo $this->db->_compile_select();
 		$q = $this->db->get();
 
 		if($q->num_rows() > 0)
@@ -215,7 +218,8 @@ class Product_model extends CI_Model {
 			$this->dbtable_price.'.tax, '.
 			$this->dbtable_cat.'.id_cat, '.
 			$this->dbtable_category.'.alias AS `category_alias`, '.
-			$this->dbtable_stock.'.qty'
+			$this->dbtable_stock.'.qty,'.
+			$this->dbtable_manufacturer.'.diskon AS `diskonManufaktur`'
 		);
 		$this->db->from($this->dbtable);
 		$this->db->join($this->dbtable_manufacturer, $this->dbtable.'.id_manufacturer = '. $this->dbtable_manufacturer.'.id_manufacturer');
@@ -233,6 +237,7 @@ class Product_model extends CI_Model {
 		);
 		$this->db->where_in($this->dbtable.'.id_product', $list);
 		$this->db->group_by($this->dbtable.".id_product");
+		//echo $this->db->_compile_select();exit; 
 		$q = $this->db->get();
 
 		if($q->num_rows() > 0)
@@ -261,7 +266,8 @@ class Product_model extends CI_Model {
 			$this->dbtable_price.'.disc_type, '.
 			$this->dbtable_cat.'.id_cat, '.
 			$this->dbtable_category.'.alias AS `category_alias`, '.
-			$this->dbtable_stock.'.qty'
+			$this->dbtable_stock.'.qty,'.
+			$this->dbtable_manufacturer.'.diskon AS `diskonManufaktur`'
 		);
 		$this->db->from($this->dbtable);
 		$this->db->join($this->dbtable_manufacturer, $this->dbtable.'.id_manufacturer = '. $this->dbtable_manufacturer.'.id_manufacturer');
@@ -278,6 +284,7 @@ class Product_model extends CI_Model {
 				$this->dbtable.'.alias' => $alias
 			)
 		);
+		//echo $this->db->_compile_select();exit;
 		$q = $this->db->get();
 
 		if($q->num_rows() > 0)

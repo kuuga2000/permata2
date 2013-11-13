@@ -5,4 +5,4 @@ $autoload['libraries'] = array('session', 'database', 'user_agent', 'pix_setting
 $autoload['helper'] = array('url', 'form', 'language', 'pix_setting');
 $autoload['config'] = array();
 $autoload['language'] = array("global");
-$autoload['model'] = array('setting_model', 'page_model', 'post_model', 'product_model', 'gallery_model', 'account_model');
+$autoload['model'] = array('setting_model', 'page_model', 'post_model', 'product_model', 'gallery_model', 'account_model','category_model');

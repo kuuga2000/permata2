@@ -19,7 +19,7 @@
 		<?php $totalprice = 0; foreach($product AS $val) {
 		$qtySelected 	= $shop_cart[$val->id_product];
 		$nettprice 		= $val->base_price * $qtySelected * (100 - $val->disc) / 100;
-		$totalprice 	+= $nettprice;
+		//$totalprice 	+= $nettprice;
 		?>
 		<tr>
 			<td>
@@ -60,7 +60,31 @@
 				<a class="remove-link" href="<?php echo base_url('checkout/remove/'.$val->id_product);?>">remove</a>
 			</td>
 			<td>
-				Total : IDR <?php echo $nettprice;?>
+				Totals : IDR 
+				<?php 
+				
+				if($val->disc==0 && $val->diskonManufaktur!==0){
+					$disc = ($val->base_price - ($val->base_price * $val->diskonManufaktur/100))*$qtySelected;
+					echo $this->currency->idr($disc);
+					
+					 
+				}
+				
+				if($val->disc!=0 && $val->diskonManufaktur!=0){
+					$disc = ($val->base_price - ($val->base_price * $val->disc/100))*$qtySelected;
+					echo $this->currency->idr($disc);	
+					 
+				}
+				
+				if($val->disc!=0 && $val->diskonManufaktur==0){
+					$disc = ($disc = $val->base_price - ($val->base_price * $val->disc/100))*$qtySelected;
+					echo $this->currency->idr($disc);
+					 
+				}
+				$totalprice 	+= $disc;
+				?>
+				
+				<?php //echo $nettprice;?>
 			</td>
 		</tr>
 		<?php } ?>
@@ -86,7 +110,7 @@
 	</div>
 	
 	<div id="total" class="fright">
-		Product total : IDR <?php echo $totalprice;?> <br/>
+		Product total : IDR <?php echo $this->currency->idr($totalprice);?> <br/>
 		<?php
 		$grand = $totalprice;
 		$voucher_active = $this->session->userdata('voucher');
@@ -109,7 +133,7 @@
 		?>
 		
 		<br/>
-		<span style="font-size:16px;">Sub Total : IDR <?php echo $grand;?></span> <br/>
+		<span style="font-size:16px;">Sub Total : IDR <?php echo $this->currency->idr($grand);?></span> <br/>
 		<br/>
 		<a href="<?php echo base_url('checkout/account')?>"><div class="gray-button" style="float:right;">CHECK OUT</div></a>
 	</div>
@@ -120,7 +144,7 @@
 		<?php echo lang('global_checkout.shopping_bag.footnote', '');?>
 	</div>
 	
-	<a href="<?php echo base_url('product/featured/new')?>"><div class="red-button" style="width:182px; margin-right:0px; float:right;">CONTINUE SHOPPING</div></a>
+	<a href="<?php echo base_url('products/featured/new')?>"><div class="red-button" style="width:182px; margin-right:0px; float:right;">CONTINUE SHOPPING</div></a>
 	
 	<div class="cb"></div>
 	

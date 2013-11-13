@@ -53,26 +53,32 @@
 				$ctr = 0; $totalmenu = count($this->pix_page->view('top'));
 				foreach ($this->pix_page->view('top') as $p) { $ctr++;
 				?>
-			<div class="menu <?php echo ($p->template == $page ? "active":"");?>" <?php echo ($p->template == 'product' ? 'id="menu-products"':'');?> >
+			<div class="menu <?php echo ($p->template == $page ? "active":"");?>" <?php echo ($p->template == 'product' ? 'id="menu-product"':'');?> >
 				<?php if($p->template == 'product') { ?>
 				
 				<div id="product-pop">
 					<div id="product-white"></div>
 					<div id="submenu-container">
 						<?php
-						if ($this->pix_page->manufacturer()) {
-							foreach ($this->pix_page->manufacturer() as $c) {
-								//echo anchor('products/manufacturer/'.$c->alias, $c->manuf_name, array('class' => 'submenu '.($c->alias == $selected_type ? "active":"")) )."<br />";
-							}
+						$categories = $this->category_model->getlist();
+						foreach($categories as $category){
+							echo anchor('products/category/'.$category->alias,$category->name, array('class' => 'submenu '.($category->alias == $selected_type ? "active":"")) )."<br />";
 						}
 						?>
+						<?php
+						/*if ($this->pix_page->manufacturer()) {
+							foreach ($this->pix_page->manufacturer() as $c) {
+								echo anchor('products/manufacturer/'.$c->alias, $c->manuf_name, array('class' => 'submenu '.($c->alias == $selected_type ? "active":"")) )."<br />";
+							}
+						}*/
+						?>
 						
-						<?php $ctr2 = 0; 
+						<?php /*$ctr2 = 0; 
 						if ($this->pix_page->featured()) {
 							foreach($this->pix_page->featured() as $val) { $ctr2++;
-								//echo anchor('products/featured/'.strtolower($val->title), ucwords(strtolower($val->title)), array('class' => 'submenu '.(strtolower($val->title) == $selected_type ? "active":"")))."<br />";
+								echo anchor('products/featured/'.strtolower($val->title), ucwords(strtolower($val->title)), array('class' => 'submenu '.(strtolower($val->title) == $selected_type ? "active":"")))."<br />";
 							}
-						}
+						}*/
 						?>
 					</div>
 				</div>

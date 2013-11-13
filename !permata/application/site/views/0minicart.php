@@ -8,7 +8,7 @@
 		$totalprice = 0; foreach($product AS $val) {
 			$qtySelected 	= $shop_cart[$val->id_product]; 
 			$nettprice 		= $val->base_price * $qtySelected * (100-($val->disc)) * 0.01;
-			$totalprice 	+= $nettprice;?>
+			//$totalprice 	+= $nettprice;?>
 			<?php 
 			if($val->qty <= 0) {
 				echo "<div class='errmsg'>* This item has no longer available</div>";
@@ -35,13 +35,36 @@
 					remove
 				</a>
 				<br />
-				IDR <?php echo $nettprice;?>
+				IDR
+				<?php 
+				
+				if($val->disc==0 && $val->diskonManufaktur!==0){
+					$disc = ($val->base_price - ($val->base_price * $val->diskonManufaktur/100))*$qtySelected;
+					echo $this->currency->idr($disc);
+					
+					 
+				}
+				
+				if($val->disc!=0 && $val->diskonManufaktur!=0){
+					$disc = ($val->base_price - ($val->base_price * $val->disc/100))*$qtySelected;
+					echo $this->currency->idr($disc);	
+					 
+				}
+				
+				if($val->disc!=0 && $val->diskonManufaktur==0){
+					$disc = ($disc = $val->base_price - ($val->base_price * $val->disc/100))*$qtySelected;
+					echo $this->currency->idr($disc);
+					 
+				}
+				$totalprice 	+= $disc;
+				?>
+				 <?php //echo $this->currency->idr($nettprice);?>
 			</div>
 			
 			<div class="cb" style="border:1px solid #bfbdbd; margin-bottom:25px;"></div>
 		<?php } ?>
 		<div id="sub-total">
-			Sub Total : IDR <?php echo $totalprice?><br />
+			Sub Total : IDR <?php echo $this->currency->idr($totalprice);?><br />
 			
 			<?php
 			$grand = $totalprice;
@@ -69,7 +92,7 @@
 			?>
 			<br />
 			
-			Total Due Ammount : IDR <?php echo $grand; ?>
+			Total Due Ammount : IDR <?php echo $this->currency->idr($grand); ?>
 		</div>
 	<?php } else { ?>
 	<?php echo lang('global_checkout.shopping_bag.empty', '');?>

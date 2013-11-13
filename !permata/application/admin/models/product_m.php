@@ -38,8 +38,9 @@ class Product_m extends CI_Model {
 		return $data;
 	}
 	function search(){
+		
 		$data = array();
-		$this->db->select('product.code,product.alias,product.id_product,product.name,product.brand_name,product.hotdeal,product.enable,product_pic.thumb25,product_price.base_price,product_price.tax');
+		$this->db->select('product.code,product.status,product.alias,product.id_product,product.name,product.brand_name,product.hotdeal,product.enable,product_pic.thumb25,product_price.base_price,product_price.tax');
 		$this->db->from('product');
 		$this->db->join('product_pic','product.id_product = product_pic.id_product','left');
 		$this->db->join('product_price','product.id_product = product_price.id_product','left');
