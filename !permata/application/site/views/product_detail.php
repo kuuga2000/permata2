@@ -66,7 +66,21 @@
 			<div class="fleft nett-price">
 				<div class="title">PRICE</div>
 				<span class="currency">IDR</span>
-				<span class="price1"><?php echo substr($disc, 0, strlen($disc)-3);?></span>
+				<span class="price1">
+				<?php 
+						$countCaracterPrice=strlen(substr(number_format($disc, 0, '', '.'), 0, strlen($disc) - 2));
+						if($countCaracterPrice==4){
+						?>
+						
+						<?php echo implode('', explode('.', substr(number_format($disc, 0, '', '.'), 0, strlen($disc) - 2)));?>
+					    
+					    <? }elseif($countCaracterPrice==5){ ?>
+					    	<?php echo implode('.', explode('.', substr(number_format($disc, 0, '', '.'), 0, strlen($disc) - 2)));?>
+					    <? }elseif($countCaracterPrice==3){ ?>
+					    	<?php echo implode('', explode('.', substr(number_format($disc, 0, '', '.'), 0, strlen($disc) - 2)));?>
+					    <? } ?>	
+					<?php //echo substr($disc, 0, strlen($disc)-3);?>
+				</span>
 				<span class="price2">.<?php echo substr($disc, -3);?></span>
 				<div class="cb"></div>
 			</div>
