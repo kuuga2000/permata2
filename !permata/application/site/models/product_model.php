@@ -347,14 +347,14 @@ class Product_model extends CI_Model {
 		}
 		$this->db->group_by($this->dbtable.".id_product");
 		
-		//echo $this->db->_compile_select();exit;
+		
 		
 		if($page && $limit){
 			$this->db->limit($limit, $page);
 		}else if ($limit) {
 			$this->db->limit($limit, 0);
 		}
-		
+		//echo $this->db->_compile_select();exit;
 		//$this->db->limit(20,80);
 		 
 		//$this->db->limit($stop,$start);
@@ -373,7 +373,8 @@ class Product_model extends CI_Model {
 			$this->dbtable_price.'.base_price, '.
 			$this->dbtable_price.'.disc, '.
 			$this->dbtable_price.'.disc_type, '.
-			$this->dbtable_category.'.alias AS `category_alias`'
+			$this->dbtable_category.'.alias AS `category_alias`,'.
+			$this->dbtable_manufacturer.'.diskon AS `diskonManufaktur`'
 		);
 		$this->db->from($this->dbtable);
 		$this->db->join($this->dbtable_manufacturer, $this->dbtable.'.id_manufacturer = '. $this->dbtable_manufacturer.'.id_manufacturer');
@@ -393,7 +394,7 @@ class Product_model extends CI_Model {
 		);
 		$this->db->group_by($this->dbtable.".id_product");
 		$this->db->order_by($this->dbtable.'.name');
-		
+		//echo $this->db->_compile_select();exit;
 		$this->db->limit(5);
 		//echo $this->db->_compile_select();exit;
 		$q = $this->db->get();

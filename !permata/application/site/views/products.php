@@ -211,7 +211,6 @@ foreach($this->product_model->pic($product->id_product) AS $val_thumb) {
 						$countCaracterPrice=strlen(substr(number_format($discprice, 0, '', '.'), 0, strlen($discprice) - 2));
 						if($countCaracterPrice==4){
 						?>
-						
 						<?php echo implode('', explode('.', substr(number_format($discprice, 0, '', '.'), 0, strlen($discprice) - 2)));?>
 					    
 					    <? }elseif($countCaracterPrice==5){ ?>

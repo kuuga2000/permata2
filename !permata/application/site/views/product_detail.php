@@ -59,6 +59,7 @@
 					echo $product->disc.' '.$percent;
 				}
 				if($product->disc==0 && $product->diskonManufaktur==0){
+					$disc = $product->base_price;
 					echo $product->disc.' '.$percent;//
 				}
 				?></div>
@@ -147,7 +148,15 @@
 			<?php 
 				}
 			} ?>
-			<div class="base_price">IDR <?php echo $this->currency->idr($item->base_price);?></div>
+			<div class="base_price" style="text-decoration: line-through; height: 20px;">IDR 
+				<?php if($item->disc!=0){
+					echo number_format($item-> base_price, 0, '', '.');
+				}elseif($item->diskonManufaktur!=0){
+					echo number_format($item -> base_price, 0, '', '.');
+				} 
+				?>
+				
+				<?php //echo $this->currency->idr($item->base_price);?></div>
 			<div class="price-nett">
 				<div class="currency">IDR</div> 
 				<div class="price1"><?php echo $this->currency->idr(substr($price_nett, 0, strlen($price_nett)-3));?></div>
