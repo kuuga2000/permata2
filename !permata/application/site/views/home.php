@@ -155,10 +155,29 @@ foreach($this->product_model->pic($val_item->id_product, 4) AS $val_thumb) {
 					</div>
 					<div class="cb"></div>
 					<div class="social">
+						<br>
 						Share
 						<br />
-						<div class="fleft tweet"></div>
-						<div class="fleft fb"></div>
+						<!--twt-->
+			<div id="fb-root"></div>
+			    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			<!--end twt-->
+			<!--fb-->
+			<!--<div id="fb-root"></div>-->
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/id_ID/all.js#xfbml=1&appId=559214290818992";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-like" style="left: -22px;" data-href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+			<!--end fb-->
+
+						<!--<div class="fleft tweet"></div>
+						<div class="fleft fb"></div>-->
 						<div class="cb"></div>
 					</div>
 					<div class="cb" style="height:30px;"></div>

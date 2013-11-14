@@ -17,7 +17,8 @@ class Product extends CI_Controller {
 	 }*/
 
 	public function index($order = '') {
-		//error_reporting(0);
+		//$this->output->cache(10);
+		
 		
 		//$array = array('100','000');
 		//echo implode($array,'.');

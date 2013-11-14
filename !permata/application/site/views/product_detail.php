@@ -28,19 +28,27 @@
 			<br>
 			Share
 			<br />
+			
+			<!--twt-->
+			<div id="fb-root"></div>
+			    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			<!--end twt-->
+			<!--fb-->
+			<!--<div id="fb-root"></div>-->
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/id_ID/all.js#xfbml=1&appId=559214290818992";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-like" style="left: -22px;" data-href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+			<!--end fb-->
 			<!--<div class="fleft tweet"></div>
 			<div class="fleft fb"></div>-->
-						<!-- AddThis Button BEGIN -->
-<div class="addthis_toolbox addthis_default_style ">
-<a class="addthis_button_tweet"></a>
-<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-
-<!--<a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-<a class="addthis_counter addthis_pill_style"></a>-->
-</div>
-<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-527f75c029cde2b5"></script>
-<!-- AddThis Button END -->
+			
 			<div class="cb"></div>
 		</div>
 		
