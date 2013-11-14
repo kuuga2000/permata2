@@ -25,10 +25,22 @@
 		<div class="deskripsi"><?php echo $product->deskripsi;?></div>
 		
 		<div class="social">
+			<br>
 			Share
 			<br />
-			<div class="fleft tweet"></div>
-			<div class="fleft fb"></div>
+			<!--<div class="fleft tweet"></div>
+			<div class="fleft fb"></div>-->
+						<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_tweet"></a>
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+
+<!--<a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+<a class="addthis_counter addthis_pill_style"></a>-->
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-527f75c029cde2b5"></script>
+<!-- AddThis Button END -->
 			<div class="cb"></div>
 		</div>
 		
@@ -148,11 +160,11 @@
 			<?php 
 				}
 			} ?>
-			<div class="base_price" style="text-decoration: line-through; height: 20px;">IDR 
+			<div class="base_price" style="text-decoration: line-through; height: 20px;">
 				<?php if($item->disc!=0){
-					echo number_format($item-> base_price, 0, '', '.');
+					echo 'IDR '.number_format($item-> base_price, 0, '', '.');
 				}elseif($item->diskonManufaktur!=0){
-					echo number_format($item -> base_price, 0, '', '.');
+					echo 'IDR '.number_format($item -> base_price, 0, '', '.');
 				} 
 				?>
 				
