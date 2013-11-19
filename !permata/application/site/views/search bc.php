@@ -39,9 +39,9 @@ if(! $product_list) {
 			<div id="showing_items_text" class="fleft"><?php //echo lang('global_products.showingtext', '');?></div>
 			<div id="page_of_text" class="fleft"></div>
 			<div id="pagination-nav" class="fleft">
-				<div class="page-nums">
-					<?php echo $this -> pagination -> create_links();?>
-				</div>
+				<div class="left"></div>
+				<div class="right"></div>
+				
 				<div class="cb"></div>
 			</div>
 			<div class="cb"></div>
@@ -108,20 +108,14 @@ if(! $product_list) {
 						<div class="cb" style="border-top:1px solid #b0a4a4; margin-top:12px; margin-bottom:9px;"></div>
 						
 						<div class="title"><?php echo $item->name?></div>
-						<div class="short-desc"><?php echo ((strlen($item->deskripsi) <= 60) ? strip_tags($item->deskripsi) : strip_tags(substr($item->deskripsi, 0, 50).".."));?></div>
+						<div class="short-desc"><?php echo ((strlen($item->deskripsi) <= 60) ? $item->deskripsi : substr($item->deskripsi, 0, 50)."..");?></div>
 						
 						<div class="cb" style="border-top:1px solid #b0a4a4; margin-top:12px; margin-bottom:6px;"></div>
 						
 						<div class="code">CODE : <?php echo $item->code?></div>
 					</div> <!-- end of .home-product-clearance-item -->
 				</a>
-			<?php if($ctr % 5 == 0) {?>
-				<div class="cb"></div>
-			<?php }?>
-			
-			<?php if($ctr % 10 == 0) {?>
-			</div> <!-- end of .product-onepage-group -->
-			<?php }?>
+			 
 			
 			<?php 
 			} // end of foreach 
@@ -135,13 +129,6 @@ if(! $product_list) {
 		</div> <!-- end of .product-onepage-group -->
 		<?php }?>
 	</div>
-	<div style="border-top:2px solid #bdbbbb; margin:4px 0px 8px 0px;"></div>
-	<div id="pagination-nav" class="fleft" style="position: relative; right: -782px;">
-				<div class="page-nums">
-					<?php echo $this -> pagination -> create_links();?>
-				</div>
-				<div class="cb"></div>
-			</div>
 </div>
 
 <div class="cb"></div>

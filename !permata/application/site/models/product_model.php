@@ -21,13 +21,21 @@ class Product_model extends CI_Model {
 		$this->dbtable_pic 					= 'product_pic';
 	}
 	
-	public function listByFilter($filter, $sort) {
+	public function listByFilter($filter='', $sort='',$limit='') {
+		if(!empty($filter)){
+			$this->session->set_userdata('filt',$filter);
+			$filter = $this->session->userdata('filt');
+		}else{
+			$filter = $this->session->userdata('filt');
+		}	
+	
 		$this->db->select(
 			$this->dbtable.'.*, '.
 			$this->dbtable_price.'.base_price, '.
 			$this->dbtable_price.'.disc, '.
 			$this->dbtable_price.'.disc_type, '.
-			$this->dbtable_manufacturer.'.alias AS `manufacturer_alias`'
+			$this->dbtable_manufacturer.'.alias AS `manufacturer_alias`,'.
+			$this->dbtable_manufacturer.'.diskon AS `diskonManufaktur`'
 		);
 		$this->db->from($this->dbtable);
 		$this->db->join($this->dbtable_manufacturer, $this->dbtable.'.id_manufacturer = '. $this->dbtable_manufacturer.'.id_manufacturer');
@@ -54,6 +62,13 @@ class Product_model extends CI_Model {
 		else if($sort == 'price')
 			$this->db->order_by($this->dbtable_price.'.base_price * (100 - '.$this->db->dbprefix($this->dbtable_price).'.disc)/100');
 		$this->db->group_by($this->dbtable.".id_product");
+		$page = $this->uri->segment(3);
+		if($page && $limit){
+			$this->db->limit($limit,$page);
+		}elseif($limit){
+			$this->db->limit($limit,0);
+		}
+		//echo $this->db->_compile_select();exit;
 		$q = $this->db->get();
 
 		if($q->num_rows() > 0)

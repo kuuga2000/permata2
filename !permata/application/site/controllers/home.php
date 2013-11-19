@@ -8,6 +8,8 @@ class Home extends CI_Controller {
 	}
 
 	public function index() {
+		
+		$this->output->cache(20);
 		if ( ! $page_detail = $this->page_model->find_template('home'))
 			redirect();
 

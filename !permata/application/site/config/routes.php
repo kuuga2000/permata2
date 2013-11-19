@@ -11,6 +11,11 @@ $route['product/page/(:any)'] = 'product/index/$1';
 $route['product/page'] = 'product/index'; 
 
 $route['product/search'] = 'product/search';
+
+$route['product/search/(:any)'] = 'product/search/$1';
+
+//$route['product/search'] = 'product/search/';
+
 $route['product'] = 'product';
 
 //$route['product/index'] = 'product/index';

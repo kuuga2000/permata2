@@ -34,6 +34,12 @@
 		<div class="bodytext">
 			<?php echo $rekening->payment_method." : ".$rekening->id_account." an ".$rekening->name_account;?><br />
 			<?php echo lang('global_checkout.thank.confirm_note', '');?>
+			<p style="margin-top: 15px;">
+				<b style="font-weight: bolder;">
+					<font color="red">*</font><?=$shipping['jabodetabek'];?><br>
+					<font color="red">*</font><?=$shipping['other'];?>
+				</b>
+			</p>
 		</div>
 	</div>
 	<?php } ?>
@@ -50,6 +56,7 @@
 			.$addr->city.', '.$addr->country.'<br />'); ?>
 		</div>
 		<br />
+		
 		<a href="<?php echo base_url();?>"><div class="red-button" style="width:162px;">RETURN TO SHOP</div></a>
 	</div>
 	

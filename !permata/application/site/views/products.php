@@ -180,9 +180,9 @@ foreach($this->product_model->pic($product->id_product) AS $val_thumb) {
 				
 				<div class="price-original" style="height: 20px;">
 				<?php if($product->disc!=0){
-					echo number_format($product -> base_price, 0, '', '.');
+					echo 'IDR '.number_format($product -> base_price, 0, '', '.');
 				}elseif($product->diskonManufaktur!=0){
-					echo number_format($product -> base_price, 0, '', '.');
+					echo 'IDR '. number_format($product -> base_price, 0, '', '.');
 				} 
 				?>
 				 

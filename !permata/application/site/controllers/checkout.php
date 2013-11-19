@@ -300,6 +300,7 @@ class Checkout extends CI_Controller {
 		
 		if ( $action == 'delivery')
 		{
+			
 			if (count($shop_cart) == 0)
 				redirect();
 				
@@ -345,6 +346,15 @@ class Checkout extends CI_Controller {
 		if ( $action == 'thank') {
 			if ( ! $this->session->userdata('sess_account'))
 				redirect('checkout/account');
+			
+			
+			/* */
+			 $data['shipping'] = array(
+				"jabodetabek" => "Jabodetabek (FREE SHIPPING)",
+				"other" => "Outside Jabodetabek (Please contact our customer service +62 21 725 6076)");
+			 /* */
+			
+			
 			
 			$data['pay_address'] 	= $this->session->userdata('address');;
 			if ( ! $this->account_model->find_address($data['pay_address'], $this->account_model->find_email($this->session->userdata('sess_account'))->id_customer))

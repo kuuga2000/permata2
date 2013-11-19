@@ -30,7 +30,7 @@
 				<a href="<?php echo base_url('account/order_detail/'.$val->invoice_number);?>"><?php echo $val->invoice_number?></a>
 			</div>
 			<div class="col"><?php echo date('d M Y H:i:s', strtotime($val->order_date)); ?></div>
-			<div class="col">IDR <?php echo $val->total_orders?></div>
+			<div class="col">IDR <?php echo $this->currency->idr($val->total_orders);?></div>
 			<div class="col"><?php echo ($val->cancel == 1) ? "Cancelled" : ( $val->accept == 1 ? "Accepted" : ($val->waiting == 1 ? "Waiting Payment Approval" : "Waiting for payment") ); ?></div>
 			<div class="lc col">
 				<?php if($val->waiting == 0) { ?>

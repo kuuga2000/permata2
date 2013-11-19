@@ -34,8 +34,8 @@
 					<div id="breadcrumb"><?php	echo $breadc;	?></div>
 					<div class="float_r button-search" >
 					<?php echo form_open('transactions'); ?>
-						<input type="text" name="search" placeholder="Search">
-						<input type="button" class="icon-search">
+						<input style="background:no-repeat scroll left; " type="text" class="icon-search" name="search" placeholder="Search">
+						<input type="button" style="float: right; margin-top: 2px; z-index: 10000" class="icon-search">
 					<?php echo form_close(); ?>
 					</div>
 					<h1><?php echo $title; ?></h1>
@@ -45,12 +45,17 @@
 							<div class='col-220'>Email</div>
 							<div class='col-120'>Total Order</div>
 							<div class='col-120'>Date</div>
+							<div class='col-120'>Payment Status</div>
+							<div class='col-120'>Order Status</div>
 						</div>
 						<div class="clear"></div>
 						<div class='display-page'>
 						
 						<?php
+						//print_r($order_all);
 						foreach ($order_all as $all) {
+							
+						
 						
 						if($all->total_orders)
 						{	$format_number = number_format($all->total_orders, 0, ',', '.'); $price = array($format_number,' Idr'); $price = implode('',$price); 	}
@@ -58,11 +63,15 @@
 						{	$price = '&nbsp'; }
 							echo 
 							   '<div class="page-list">
-								<div class="col-120" style="background:none;">'.$all->invoice_number.'&nbsp</b></div>
+								<div class="col-120" style="background:none;text-decoration: underline;">'.
+								anchor($subpage.'/information/'.$all->invoice_number,$all->invoice_number).
+								'&nbsp</b></div>
 								<div class="col-220" style="background:none; text-decoration:underline;"><span><b>'.anchor('transactions/customers_setup/'.$all->id_customer,$all->email).'&nbsp</b></span></div>
 								<div class="col-120" style="background:none;"><span><b>'.$price.'&nbsp</b></span></div>
 								<div class="col-120" style="background:none;"><span><b>'.date ("d F Y",strtotime($all->date)).'&nbsp</b></span></div>
-								<div class="col-40" style="font-weight:bold; background:none;"><span>'.anchor($subpage.'/information/'.$all->invoice_number,'[View]').'</span></div>
+								<div class="col-120" style="background:none;"><span><b>'.$all->payment.'&nbsp</b></span></div>
+								<div class="col-120" style="background:none;"><span><b>'.$all->status.'&nbsp</b></span></div>
+								<!--<div class="col-40" style="font-weight:bold; background:none;"><span>'.anchor($subpage.'/information/'.$all->invoice_number,'[View]').'</span></div>-->
 								</div>';
 						}
 						?>

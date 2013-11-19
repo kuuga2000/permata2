@@ -17,7 +17,7 @@ class Product extends CI_Controller {
 	 }*/
 
 	public function index($order = '') {
-		//$this->output->cache(10);
+		/*$this->output->cache(20);*/
 		
 		
 		//$array = array('100','000');
@@ -65,20 +65,35 @@ class Product extends CI_Controller {
 	}
 
 	public function search() {
-		if (!$_POST)
-			redirect();
+
+		/*if (!$_POST)
+			redirect();*/
 
 		$filter = $this -> input -> post('search-input');
-		if (!$filter)
-			redirect();
-
+		//exit;
+		/*if (!$filter)
+			redirect();*/
+		
 		$sort = $this -> input -> post('sort');
 		if ($sort)
 			$this -> session -> set_userdata('sort', $sort);
 
 		$data['sortby'] = $this -> session -> userdata('sort');
-		$data['product_list'] = $this -> product_model -> listByFilter($filter, $data['sortby']);
-
+		$limit =20;
+		
+		$data['product_list'] = $this -> product_model -> listByFilter($filter, $data['sortby'],$limit);
+		
+		
+		/*paging*/
+		$config['base_url'] = base_url() . 'product/search';
+		$config['total_rows'] = count($this -> product_model -> listByFilter($filter));
+		$config['uri_segment'] = 3;
+		$config['use_page_numbers'] = TRUE;
+		$config['per_page'] = $limit;
+		$this -> pagination -> initialize($config);
+		/*paging*/
+		
+		
 		$data['page'] = 'product';
 		$data['page_detail'] = '';
 		$data['key'] = $filter;
@@ -90,6 +105,8 @@ class Product extends CI_Controller {
 	}
 
 	public function page() {
+		/*$this->output->cache(20);*/
+		
 		// mfc = manufacturer or featured or category
 		//$segment_1 = $thi->uri->segment(1);
 		$type = $this -> uri -> segment(2);
@@ -194,7 +211,7 @@ class Product extends CI_Controller {
 	}
 
 	public function page_detail() {
-
+		/*$this->output->cache(20);*/
 		$type = $this -> uri -> segment(2);
 		$mfc = $this -> uri -> segment(3);
 		$prod = $this -> uri -> segment(4);

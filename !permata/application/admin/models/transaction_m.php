@@ -8,9 +8,24 @@ class Transaction_m extends CI_Model {
     }
 	
 	function get_order(){
+		 
 		$data = array();
 		$page = $this->uri->segment(3);
-		$this->db->select("customer.id_customer,customer.email,order.invoice_number,order.total_orders,order.date,order.waiting as status");
+		$this->db->select("customer.id_customer, customer.email, order.invoice_number, order.total_orders,order.*, 
+		CASE WHEN zpxf_order.error = 0 THEN 
+			CASE WHEN zpxf_order.accept = 0 THEN 
+				CASE when zpxf_order.waiting = 0 THEN 'pending'
+					ELSE 'waiting'
+				END
+			ELSE 'accept'
+			END
+		ELSE 'error' 
+		END as payment,
+		CASE WHEN zpxf_order.cancel = 0 THEN 
+			CASE WHEN zpxf_order.deliver = 0 THEN 'pending'
+			ELSE 'delivered' END
+		ELSE 'cancel' END AS status
+		/*order.waiting as status*/",FALSE);
 		$this->db->from("order");
 		$this->db->join('customer','order.id_customer = customer.id_customer','left');
 		$this->db->order_by('date','desc');
@@ -22,6 +37,7 @@ class Transaction_m extends CI_Model {
 		{
 			$this->db->limit(5,0);
 		}
+		//echo $this->db->_compile_select();exit;
 		$hasil = $this->db->get();
 		if($hasil->num_rows() >0)
 		{	
