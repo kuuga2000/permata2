@@ -156,7 +156,7 @@ foreach($this->product_model->pic($val_item->id_product, 4) AS $val_thumb) {
 					<div class="cb"></div>
 					<div class="social">
 						<br>
-						Share
+						Shares 
 						<br />
 						<!--twt-->
 			<div id="fb-root"></div>
@@ -173,7 +173,7 @@ foreach($this->product_model->pic($val_item->id_product, 4) AS $val_thumb) {
   js.src = "//connect.facebook.net/id_ID/all.js#xfbml=1&appId=559214290818992";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<div class="fb-like" style="left: -22px;" data-href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+<div class="fb-like" style="left: -22px;" data-href="<?php echo site_url();?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
 			<!--end fb-->
 
 						<!--<div class="fleft tweet"></div>

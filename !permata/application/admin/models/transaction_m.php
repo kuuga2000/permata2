@@ -48,13 +48,29 @@ class Transaction_m extends CI_Model {
 	}
 	function search_order(){
 		$data = array();
-		$this->db->select("customer.firstname,customer.lastname,order.invoice_number,order.total_orders,order.date,order.waiting as status");
+		$this->db->select("customer.firstname,customer.email,customer.lastname,order.invoice_number,order.total_orders,order.date,order.*,
+		CASE WHEN zpxf_order.error = 0 THEN 
+			CASE WHEN zpxf_order.accept = 0 THEN 
+				CASE when zpxf_order.waiting = 0 THEN 'pending'
+					ELSE 'waiting'
+				END
+			ELSE 'accept'
+			END
+		ELSE 'error' 
+		END as payment,
+		CASE WHEN zpxf_order.cancel = 0 THEN 
+			CASE WHEN zpxf_order.deliver = 0 THEN 'pending'
+			ELSE 'delivered' END
+		ELSE 'cancel' END AS status
+		
+		/*order.waiting as status*/",FALSE);
 		$this->db->from("order");
 		$this->db->join('customer','order.id_customer = customer.id_customer','left');
-		$this->db->like('order.invoice_number', $this->input->post("search")); 
-		$this->db->or_like('customer.firstname', $this->input->post("search")); 
-		$this->db->or_like('customer.lastname', $this->input->post("search")); 
+		$this->db->like('order.invoice_number', trim($this->input->post("search"))); 
+		$this->db->or_like('customer.firstname', trim($this->input->post("search"))); 
+		$this->db->or_like('customer.lastname', trim($this->input->post("search"))); 
 		$this->db->order_by('date','desc');
+		//echo $this->db->_compile_select();exit;
 		$hasil = $this->db->get();
 		if($hasil->num_rows() >0)
 		{	

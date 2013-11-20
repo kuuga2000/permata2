@@ -6,7 +6,7 @@
 	<meta name="keywords" content="<?php echo meta_tags('meta_keywords', $page, isset($post) ? $post : false); ?>" />
 	<meta name="description" content="<?php echo meta_tags('meta_description', $page, isset($post) ? $post : false); ?>" />
 	<link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url('assets/img/favicon.png'); ?>" />
-
+	<meta property="og:image" content="<?=base_url();?>assets/img/brand-01.jpg" />
 	<link rel="stylesheet" type="text/css" href="<?php echo site_url('assets/css/style.css'); ?>" />
 	<script type="text/javascript" src="<?php echo site_url('assets/js/jquery-1.8.0.min.js'); ?>"></script>
 	<!--[if lt IE 9]>

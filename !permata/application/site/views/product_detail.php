@@ -150,7 +150,10 @@
 <div class="cb" style="height:66px;"></div>
 
 <div id="related-product" class="body-wrapper">
-	<div class="fleft"><h2>RELATED PRODUCT</h2></div>
+	<div class="fleft"><h2>RELATED PRODUCT 
+		
+		<? //='http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];?>
+		<?php //echo str_replace('index.php/','','http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);?></h2></div>
 	
 	<div class="cb" style="border:1px solid #bfbdbd; margin-bottom:5px;"></div>
 	
@@ -167,7 +170,9 @@
 			<div class="image"><img src="<?php echo base_url('assets/upload/product/m/'.$val_thumb->thumb135);?>" /></div>
 			<?php 
 				}
-			} ?>
+			}else{?>
+				<div class="image"><img src="<?php echo base_url('assets/upload/product/m/no_image.jpg');?>" /></div>
+			<? } ?>
 			<div class="base_price" style="text-decoration: line-through; height: 20px;">
 				<?php if($item->disc!=0){
 					echo 'IDR '.number_format($item-> base_price, 0, '', '.');
